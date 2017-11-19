@@ -23,27 +23,27 @@ Project e-commerce made with
 
 ![alt text](public/uploads/screen.png)
 
-## Install Laravel
 
-- 'composer global require "laravel/installer" '
+## Prérequis
+
+- Php
+- Composer
+- Npm
+- Artisan
+- Mysql
+
 
 ## Install package.json
 
 - npm install
 
-## Demarrer le serveur DB mysql
-
-- "mysql.server start" (mac) 
-- "php -S localhost:'port' " (windows)
-
-(les paramètres de la DB sont réglable dans  .env)
-
-
-par default la DB est nommée musicband_db
 
 ## Importer les tables
 
+(Les paramètres de la DB sont réglable dans  .env, par default la DB est nommée musicband_db
+
 pour générer les tables
+
 - "php artisan migrate"
 
 ## Demarrer le serveur Laravel
