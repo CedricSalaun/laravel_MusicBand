@@ -21,7 +21,7 @@ Project e-commerce made with
 
 [CSS](https://www.w3schools.com/css/css3_intro.asp) v3,
 
-![alt text](/Users/Cedric/Sites/GitClean/laravel_MusicBand/public/uploads/capture.png)
+![alt text](/Users/Cedric/Sites/GitClean/laravel_MusicBand/public/uploads/screen.png)
 
 ## Install Laravel
 
