@@ -13,8 +13,12 @@ Project e-commerce made with
 [CSS](https://www.w3schools.com/css/css3_intro.asp) v3,
 
 ![alt text](/Users/Cedric/Sites/GitClean/laravel_MusicBand/public/uploads/capture.png)
-##
-#Install
+
+## Install Laravel
+
+- 'composer global require "laravel/installer" '
+
+## Install package.json
 
 - npm install
 
