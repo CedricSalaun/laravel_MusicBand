@@ -12,7 +12,7 @@ Project e-commerce made with
 
 [CSS](https://www.w3schools.com/css/css3_intro.asp) v3,
 
-
+![alt text](/Users/Cedric/Sites/GitClean/laravel_MusicBand/public/uploads/capture.png)
 ##
 #Install
 
@@ -20,8 +20,8 @@ Project e-commerce made with
 
 ## Demarrer le serveur DB mysql
 
-- mysql.server start (mac) 
-- php -S localhost:'port' (windows)
+- "mysql.server start" (mac) 
+- "php -S localhost:'port' " (windows)
 
 (les paramètres de la DB sont réglable dans  .env)
 
@@ -30,11 +30,8 @@ par default la DB est nommée musicband_db
 
 ## Importer les tables
 
-pour vérifier la requête de génération des tables
-- "php bin/console doctrine:schema: update --dump-sql"
-
 pour générer les tables
-- "php bin/console doctrine:schema: update --force"
+- "php artisan migrate"
 
 ## Demarrer le serveur Laravel
 

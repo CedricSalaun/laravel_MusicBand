@@ -1,0 +1,94 @@
+<?php
+
+namespace App\Http\Controllers\Front;
+
+use App\Coupon;
+use App\Product;
+use Cart;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Darryldecode\Cart\CartCondition;
+
+class CartController extends Controller
+{
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function add(Request $request)
+    {
+        $product = Product::find($request->product_id);
+        Cart::add(['id' => $product->id, 'name' => $product->nom, 'price' => $product->prixTTC(), 'quantity' => $request->qte, 'attributes' => ['photo' => $product->photo]]);
+        return redirect()->to(route('panier'));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function addOne(Request $request)
+    {
+        $product = Product::find($request->product_id);
+        Cart::add(['id' => $product->id, 'name' => $product->nom, 'price' => $product->prixTTC(), 'quantity' => +1, 'attributes' => ['photo' => $product->photo]]);
+        return redirect()->to(route('panier'));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        $products    = Cart::getContent();
+        $products    = array_sort($products);
+        $sous_total  = Cart::getSubTotal();
+        $remises     = Cart::getConditions();
+        $total       = Cart::getTotal();
+        $panier_vide = Cart::isEmpty();
+        return view('front.cart.index', compact('products', 'total', 'panier_vide', 'sous_total', 'remises'));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateQte(Request $request)
+    {
+        Cart::update($request->product_id, ['quantity' => ['relative' => false, 'value' => $request->qte]]);
+        return redirect()->to(route('panier'));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete(Request $request)
+    {
+        Cart::remove($request->id);
+        return redirect()->to(route('panier'));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function compare(Request $request)
+    {
+        $code   = Coupon::where('code', $request->coupon);
+        $count  = $code->count();
+        $coupon = $code->first();
+        if($count == 1){
+            $promo = new CartCondition(array('name' => $coupon->code, 'type' => 'coupon', 'target' => 'subtotal', 'value' => "- $coupon->value",));
+            Cart::clearCartConditions();
+            Cart::condition($promo);
+            return redirect()->to(route('panier'))->with('message_success', "Le coupon {$coupon->code} a été appliqué. Remise: {$coupon->value}");
+            //déja implémenté dans le Bundle
+            /*if($value > 0){
+                return redirect()->to(route('panier', compact('coupon')));
+            }else{
+                return redirect()->to(route('panier', compact('coupon')));
+            }*/
+        }else{
+            return redirect()->to(route('panier'))->with('message_error', "Ce coupon n'est pas valide");
+        }
+    }
+}
