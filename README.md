@@ -28,35 +28,42 @@ Project e-commerce made with
 
 - Php
 - Composer
-- Npm
 - Artisan
 - Mysql
 
 
-## Install package.json
+### Install composer.json
 
-- npm install
+- composer install
 
 
-## Importer les tables
+### Importer les tables
 
-(Les paramètres de la DB sont réglable dans  .env, par default la DB est nommée musicband_db
+Les paramètres de la DB sont réglable dans  .env, par default la:
+
+| DB            | user          | password  |
+| ------------- |:-------------:| ---------:|
+| musicband_db  | root          | ""        |
+
+- DB = musicband_db
+- user = root
+-password = ""
 
 pour générer les tables
 
 - "php artisan migrate"
 
-## Demarrer le serveur Laravel
+### Demarrer le serveur Laravel
 
 - "php artisan serve"
 
-## Utiliser le Backend
+### Utiliser le Backend
 
 - Créer un utilisateur via la page register.
-- Augmenter les droits directement dans phpmyadmin.
+- Augmenter les droits directement dans la DB.
 - Se connecter avec cet utilisateur (le menu backend est maintenant disponible).
 
-## License
+#### License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
