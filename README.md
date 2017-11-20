@@ -43,13 +43,9 @@ Les paramètres de la DB sont réglable dans  .env, par default la:
 
 | DB            | user          | password  |
 | ------------- |:-------------:| ---------:|
-| musicband_db  | root          | ""        |
+| musicband_db  | root          |           |
 
-- DB = musicband_db
-- user = root
--password = ""
-
-pour générer les tables
+##### pour générer les tables
 
 - "php artisan migrate"
 
